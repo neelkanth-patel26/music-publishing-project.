@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Games Website</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1em;
+    }
+
+    nav {
+      background-color: #34495e;
+      padding: 0.5em;
+      text-align: center;
+    }
+
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      padding: 0.5em 1em;
+      margin: 0 0.2em;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #2c3e50;
+    }
+
+    section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .sport-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .sport-card {
+      width: 300px;
+      margin: 20px;
+      padding: 10px;
+      background-color: #ecf0f1;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .sport-card img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1em;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    
+    
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sports Games Website</h1>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="football.html">Football</a>
+    <a href="#basketball">Basketball</a>
+    <a href="#tennis">Tennis</a>
+    <!-- Add more sports or categories as needed -->
+  </nav>
+
+  <section id="football">
+    <h2>Football</h2>
+    <div class="sport-container">
+      <div class="sport-card">
+        <img src="football_image.jpg" alt="Football Image">
+        <p>Description of football and related sports content.</p>
+        <a href="football.html">Football</a>
+      </div>
+      <!-- Add more football-related content as needed -->
+      <a href="football.html">Football</a>
+    </div>
+  </section>
+
+  <section id="basketball">
+    <h2>Basketball</h2>
+    <div class="sport-container">
+      <div class="sport-card">
+        <img src="basketball_image.jpg" alt="Basketball Image">
+        <p>Description of basketball and related sports content.</p>
+      </div>
+      <!-- Add more basketball-related content as needed -->
+    </div>
+  </section>
+
+  <section id="tennis">
+    <h2>Tennis</h2>
+    <div class="sport-container">
+      <div class="sport-card">
+        <img src="tennis_image.jpg" alt="Tennis Image">
+        <p>Description of tennis and related sports content.</p>
+      </div>
+      <!-- Add more tennis-related content as needed -->
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2023 Sports Games Website
+  </footer>
+
+</body>
+</html>

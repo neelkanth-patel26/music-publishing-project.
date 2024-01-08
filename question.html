@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FAQ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+#loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* Black background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .loader {
+            animation: rotate 1s infinite;
+            height: 50px;
+            width: 50px;
+        }
+
+        .loader:before,
+        .loader:after {
+            border-radius: 50%;
+            content: '';
+            display: block;
+            height: 20px;
+            width: 20px;
+        }
+
+        .loader:before {
+            animation: ball1 1s infinite;
+            background-color: #7C7ADE; /* Purple color */
+            box-shadow: 30px 0 0 #fff; /* White color */
+            margin-bottom: 10px;
+        }
+
+        .loader:after {
+            animation: ball2 1s infinite;
+            background-color: #fff; /* White color */
+            box-shadow: 30px 0 0 #7C7ADE; /* Purple color */
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg) scale(0.8);
+            }
+            50% {
+                transform: rotate(360deg) scale(1.2);
+            }
+            100% {
+                transform: rotate(720deg) scale(0.8);
+            }
+        }
+
+        @keyframes ball1 {
+            0% {
+                box-shadow: 30px 0 0 #fff; /* White color */
+            }
+            50% {
+                box-shadow: 0 0 0 #fff; /* White color */
+                margin-bottom: 0;
+                transform: translate(15px, 15px);
+            }
+            100% {
+                box-shadow: 30px 0 0 #fff; /* White color */
+                margin-bottom: 10px;
+            }
+        }
+
+        @keyframes ball2 {
+            0% {
+                box-shadow: 30px 0 0 #7C7ADE; /* Purple color */
+            }
+            50% {
+                box-shadow: 0 0 0 #7C7ADE; /* Purple color */
+                margin-top: -20px;
+                transform: translate(15px, 15px);
+            }
+            100% {
+                box-shadow: 30px 0 0 #7C7ADE; /* Purple color */
+                margin-top: 0;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #212121;
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #7C7ADE;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #c3c2f6;
+        }
+
+        .social-links a {
+    background-color: #212121;
+    color: #7C7ADE;
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 12px 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(67, 90, 96, 0.2); /* Add a subtle shadow */
+}
+
+.social-links a svg {
+    margin-right: 8px;
+}
+
+.social-links a:hover {
+    background-color: #7C7ADE;
+    color:#212121;
+}
+
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #212121;
+            border: 1px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #7C7ADE;
+            flex: 1;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        p {
+           
+            color: #7C7ADE;
+        }
+
+        footer {
+            background: #212121;
+            color: #7C7ADE;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: auto;
+        }
+
+        ::selection {
+            background-color: #7C7ADE;
+            color: #000000;
+        }
+        img {
+            box-shadow: 0 0 10px #7C7ADE;
+        }
+    
+    </style>
+</head>
+
+<body>
+    <div id="loading-overlay">
+        <div class="loader"></div>
+        <div id="loading-message">Loading...</div>
+    </div>
+    <!-- Header section with the website title and social links -->
+    <header>
+        <a href="https://gnstudioxrage.wixsite.com/gamingnetworkstudio" target="_blank" rel="noopener">
+            <h1>Gaming Network Studio Music</h1>
+        </a>
+        <div class="social-links">
+            <a href="index.html" rel="noopener">Release</a>
+            <a href="Spotify Playlist.html" rel="noopener">PlayList</a>
+            <a href="https://www.youtube.com/channel/UC6_eACrlF9Mp7wIHLe3gkMA" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://www.linkedin.com/in/gaming-network-studio-823234289/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/neelkanth_patel_26/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://discord.com/invite/PAMxeg3ega" target="_blank" rel="noopener">Discord</a>
+            <a href="https://soundcloud.com/gamingnetworkstudio" target="_blank" rel="noopener">SoundCloud</a>
+            <a href="About.html"  rel="noopener">About</a>
+        </div>
+    </header>
+
+    <!-- Main content section with an introduction, current endeavors, and questions sections -->
+    <main>
+       
+        <div class="content">
+            
+            <!-- Questions section -->
+
+            <section>
+
+                <img src="1 neelkanth11,.jpg" alt="Music Production Image" style="max-width: 100%; border-radius: 10px;">
+
+                <h2>Music Production FAQ</h2>
+                <p><strong>Q: Questions Commonly Asked by Aspiring Music Producers</strong></p>
+                <p>A: If you love recording, mixing, and mastering music, chances are you have actively considered pursuing a career in Music Production.
+
+                    With readily available DAW software such as Pro Tools, Ableton, Garageband, and Logic, many audio engineers have been diving into the art of music production and learning on the fly.
+                    
+                    However, there are certainly misconceptions that accompany this sort of mindset.
+                    
+                    For instance, being a music producer is a lot more work than merely editing music content.
+                    
+                    More often than not, music producers act more like project managers. This can entail changing creative components, leading sound engineers, and keeping everything organized.
+                    
+                    On top of that, it is critical that a music producer has a great ear for music. Obvious? Perhaps, but it cannot be overlooked.</p>
+
+
+                    <img src="3 urmi1356.jpg" alt="Music Production Image" style="max-width: 100%; border-radius: 10px;">
+
+
+                <p><strong>Q: What challenges are aspiring music producers facing?</strong></p>
+                <p>A: Unfortunately, one aspect that is making it really simple to jump into music production is also making it difficult for individuals to succeed in music production.
+
+                    That would be how readily available and DIY audio engineering has become. We've previously touched on this (all of the DAW software), but in a saturated, DIY market, how can someone stand out?
+                </p>
+
+                <img src="4 v-tag.jpg" alt="Music Production Image" style="max-width: 100%; border-radius: 10px;">
+
+                <p><strong>Q: What is a Music Producer?</strong></p>
+                <p>
+                    A: What is a music producer expected to accomplish? What are the job responsibilities? And how does a Music Producer differ from a sound engineer?
+
+                    To learn more about the defined role of a Music Producer <a href="https://www.aimm.edu/what-is-a-music-producer" target="_blank" rel="noopener">Click Here</a>
+                </p>
+
+                <img src="5 Gaming Network Studio.jpg" alt="Gaming Network Studio Image" style="max-width: 100%; border-radius: 10px;">
+                <p><strong>Gaming Network Studio</strong></p>
+            </section>
+
+            <!-- Image credit section -->
+            <section>
+                <div class="image-credit">
+                    <p>Credit: <a href="https://www.instagram.com/neelkanth_patel_26/" target="_blank" rel="noopener">Neelkanth Patel</a> <a href="https://www.instagram.com/urmineelkanthworld/" target="_blank" rel="noopener">Urmi Thakkar</a> (Not In The Collage)</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer section with copyright information -->
+    <footer>
+        <p>Copyright © 2024 Gaming Network Studio. By: Neelkanth Patel with Urmi Thakkar.</p>
+    </footer>
+    <script>
+        // Loading overlay script
+        document.addEventListener('DOMContentLoaded', function () {
+            var loadingOverlay = document.getElementById('loading-overlay');
+            setTimeout(function () {
+                loadingOverlay.style.opacity = '0';
+            }, 2000); // Adjusted duration to 2000ms (2 seconds)
+        });
+
+        document.addEventListener('transitionend', function (event) {
+            if (event.propertyName === 'opacity') {
+                var loadingOverlay = document.getElementById('loading-overlay');
+                loadingOverlay.style.display = 'none';
+                document.body.style.overflow = 'visible';
+            }
+        });
+
+        // You can add more scripts for your gaming showcase features
+    </script>
+</body>
+
+</html>

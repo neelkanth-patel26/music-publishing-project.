@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Loading overlay styles */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* Black background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .loader {
+            animation: rotate 1s infinite;
+            height: 50px;
+            width: 50px;
+        }
+
+        .loader:before,
+        .loader:after {
+            border-radius: 50%;
+            content: '';
+            display: block;
+            height: 20px;
+            width: 20px;
+        }
+
+        .loader:before {
+            animation: ball1 1s infinite;
+            background-color: #7C7ADE; /* Purple color */
+            box-shadow: 30px 0 0 #fff; /* White color */
+            margin-bottom: 10px;
+        }
+
+        .loader:after {
+            animation: ball2 1s infinite;
+            background-color: #fff; /* White color */
+            box-shadow: 30px 0 0 #7C7ADE; /* Purple color */
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg) scale(0.8);
+            }
+            50% {
+                transform: rotate(360deg) scale(1.2);
+            }
+            100% {
+                transform: rotate(720deg) scale(0.8);
+            }
+        }
+
+        @keyframes ball1 {
+            0% {
+                box-shadow: 30px 0 0 #fff; /* White color */
+            }
+            50% {
+                box-shadow: 0 0 0 #fff; /* White color */
+                margin-bottom: 0;
+                transform: translate(15px, 15px);
+            }
+            100% {
+                box-shadow: 30px 0 0 #fff; /* White color */
+                margin-bottom: 10px;
+            }
+        }
+
+        @keyframes ball2 {
+            0% {
+                box-shadow: 30px 0 0 #7C7ADE; /* Purple color */
+            }
+            50% {
+                box-shadow: 0 0 0 #7C7ADE; /* Purple color */
+                margin-top: -20px;
+                transform: translate(15px, 15px);
+            }
+            100% {
+                box-shadow: 30px 0 0 #7C7ADE; /* Purple color */
+                margin-top: 0;
+            }
+        }
+
+        /* Main content styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #141414; /* Black background */
+            color: #fff; /* White text color */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #212121; /* Dark background for header */
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle box shadow */
+        }
+
+        h1 {
+            color: #7C7ADE; /* Bright blue */
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Style the social links as buttons */
+        .social-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .social-links a {
+            background-color: #212121;
+            color: #7C7ADE;
+            text-decoration: none;
+            margin-right: 10px;
+            padding: 12px 10px;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(67, 90, 96, 0.2); /* Add a subtle shadow */
+        }
+
+        .social-links a svg {
+            margin-right: 8px;
+        }
+
+        .social-links a:hover {
+            background-color: #7C7ADE; /* Slightly darker blue on hover */
+            color: #212121;
+        }
+
+        /* Add a container to center the social links */
+        .social-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #212121; /* Dark background for main content */
+            border: 1px solid #333; /* Darker border color */
+            border-radius: 10px;
+            box-shadow: 0 0 10px #7C7ADE; /* Subtle box shadow */
+            flex: 1;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        input[type="date"] {
+            background-color: #333; /* Dark background */
+            border: 1px solid #2c3e50; /* Darker border color */
+            color: #fff;
+            padding-right: 18px;
+            border-radius: 10px;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background-color: #7C7ADE; /* Darker blue */
+            color: transparent;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #7C7ADE;
+            display: inline-block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .custom-file-upload {
+            background-color: #3f3e75;
+            color: #7C7ADE;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(67, 90, 96, 0.2); /* Add a subtle shadow */
+        }
+
+        .custom-file-upload:hover {
+            background-color: #7C7ADE; /* Slightly darker blue on hover */
+            color: #212121;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            margin-bottom: 10px;
+            background: #333; /* Dark background */
+            border: none;
+            color: #7C7ADE;
+            padding: 8px;
+            animation: fadeIn 1s ease-in-out;
+            border-radius: 10px;
+        }
+
+        input[type="text"]::after {
+            content: " ©";
+            color: #fff;
+            pointer-events: none;
+        }
+
+        button {
+            background-color: #3f3e75;
+            color: #7C7ADE;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(67, 90, 96, 0.2); /* Add a subtle shadow */
+        }
+
+        button:hover {
+            background-color: #7C7ADE; /* Slightly darker blue on hover */
+            color: #212121;
+        }
+
+        /* Style the footer */
+        footer {
+            background: #212121;
+            color: #7C7ADE;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: auto;
+        }
+
+        .attention {
+            font-size: 14px;
+            color: #fff;
+            margin: 5px 0;
+        }
+
+        #preview {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #212121; /* Dark background for preview */
+            border-radius: 10px;
+            box-shadow: 0 0 10px #7C7ADE; /* Subtle box shadow */
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #preview h2 {
+            color: #7C7ADE; /* Bright blue */
+        }
+
+        #preview img {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 0 5px #7C7ADE;
+        }
+
+        #artist-rights {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #333; /* Dark background for artist rights */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle box shadow */
+        }
+
+        #artist-rights h2 {
+            color: #7C7ADE; /* Bright blue */
+        }
+
+        #submit-button {
+            display: none;
+        }
+
+        #submit-button {
+            background-color: #3f3e75;
+            color: #7C7ADE;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(67, 90, 96, 0.2); /* Add a subtle shadow */
+        }
+
+        #submit-button:hover {
+            background-color: #7C7ADE; /* Slightly darker blue on hover */
+            color: #212121;
+        }
+
+        /* CSS for the audio controls */
+        #preview-audio {
+            background-color: #212121;
+            color: #7C7ADE;
+            border: 1px solid #2c3e50;
+            border-radius: 5px;
+            width: 50%;
+            margin-top: 20px; /* Add margin to separate from the image */
+        }
+
+        .audio-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .audio-controls button {
+            background-color: #7C7ADE;
+            color: #212121;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .audio-controls button:hover {
+            background-color: #7C7ADE;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .gap {
+            margin-top: 10px;
+        }
+
+        ::selection {
+            background-color: #7C7ADE; /* Bright blue */
+            color: #333;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+
+    </style>
+    <title>GN STUDIO MUSIC</title>
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
+        <div id="loading-message">Welcome To Gaming Network Studio Music</div>
+    </div>
+
+    <header>
+        <a href="https://gnstudioxrage.wixsite.com/gamingnetworkstudio" target="_blank" rel="noopener">
+            <h1>Gaming Network Studio Music</h1>
+        </a>
+        <div class="social-links">
+	        <a href="Spotify Playlist.html" rel="noopener">PlayList</a>
+            <a href="https://www.youtube.com/channel/UC6_eACrlF9Mp7wIHLe3gkMA" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://www.linkedin.com/in/gaming-network-studio-823234289/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/neelkanth_patel_26/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://discord.com/invite/PAMxeg3ega" target="_blank" rel="noopener">Discord</a>
+            <a href="https://soundcloud.com/gamingnetworkstudio" target="_blank" rel="noopener">SoundCloud</a>
+            <a href="question.html" rel="noopener">FAQ</a>
+            <a href="About.html" rel="noopener">About</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="music-upload">
+            <h2>Upload Your Music</h2>
+            <form action="javascript:void(0)" onsubmit="showPreview();">
+                <label for="artist-name">Artist's Name:</label>
+                <input type="text" id="artist-name" name="artistName" required>
+                <p class="attention" id="artist-attention"></p>
+
+                <label for="rights-holder">Rights Holder:</label>
+                <input type="text" id="rights-holder" name="rightsHolder" required>
+                <p class="attention" id="rights-attention"></p>
+
+                <label for="music-file" class="custom-file-upload">Choose Music File (WAV format for best quality)</label>
+                <input type="file" id="music-file" name="musicFile" accept=".wav" required>
+
+                <p class="attention" id="music-attention"></p>
+
+                <label for="image-file" class="custom-file-upload">Choose an Image (3000x3000 pixels)</label>
+                <input type="file" id="image-file" name="imageFile" accept="image/*" required>
+
+                <p class="attention" id="image-attention"></p>
+
+                <label for="release-date">Release Date (One week ahead):</label>
+                <input type="date" id="release-date" name="releaseDate" required min="2023-11-01">
+                <p class="attention" id="date-attention"></p>
+
+                <button type="submit">Preview</button>
+            </form>
+        </section>
+
+        <!-- Preview Section -->
+        <section id="preview">
+            <h2>Preview</h2>
+            <p class="attention" id="preview-music-attention"></p>
+            <p class="attention" id="preview-image-attention"></p>
+            <p class="attention" id="preview-date-attention"></p>
+            <p class="attention" id="preview-artist-attention"></p>
+            <p class="attention" id="preview-rights-attention"></p>
+            <img id="preview-image" alt="Image Preview">
+
+            <audio id="preview-audio" controls>
+                <source src="your-audio-file.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="center">
+                <button id="submit-button" onclick="sendEmail();" class="gap">Submit</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright © 2024 Gaming Network Studio. By: Neelkanth Patel with Urmi Thakkar.</p>
+    </footer>
+
+
+    <script>
+        // Loading overlay script
+        document.addEventListener('DOMContentLoaded', function () {
+            var loadingOverlay = document.getElementById('loading-overlay');
+            setTimeout(function () {
+                loadingOverlay.style.opacity = '0';
+            }, 5000); // Adjusted duration to 2000ms (2 seconds)
+        });
+
+        document.addEventListener('transitionend', function (event) {
+            if (event.propertyName === 'opacity') {
+                var loadingOverlay = document.getElementById('loading-overlay');
+                loadingOverlay.style.display = 'none';
+                document.body.style.overflow = 'visible';
+            }
+        });
+
+        function showPreview() {
+            const musicFile = document.getElementById("music-file").files[0];
+            const imageFile = document.getElementById("image-file").files[0];
+            const releaseDate = document.getElementById("release-date").value;
+            const artistName = document.getElementById("artist-name").value;
+            const rightsHolder = document.getElementById("rights-holder").value;
+            const musicAttention = document.getElementById("music-attention");
+            const imageAttention = document.getElementById("image-attention");
+            const dateAttention = document.getElementById("date-attention");
+            const artistAttention = document.getElementById("artist-attention");
+            const rightsAttention = document.getElementById("rights-attention");
+            const previewMusicAttention = document.getElementById("preview-music-attention");
+            const previewImageAttention = document.getElementById("preview-image-attention");
+            const previewDateAttention = document.getElementById("preview-date-attention");
+            const previewArtistAttention = document.getElementById("preview-artist-attention");
+            const previewRightsAttention = document.getElementById("preview-rights-attention");
+            const previewSection = document.getElementById("preview");
+            const previewImage = document.getElementById("preview-image");
+            const previewAudio = document.getElementById("preview-audio");
+
+            musicAttention.textContent = "";
+            imageAttention.textContent = "";
+            dateAttention.textContent = "";
+            artistAttention.textContent = "";
+            rightsAttention.textContent = "";
+            previewMusicAttention.textContent = "";
+            previewImageAttention.textContent = "";
+            previewDateAttention.textContent = "";
+            previewArtistAttention.textContent = "";
+            previewRightsAttention.textContent = "";
+
+            if (musicFile && imageFile) {
+                if (musicFile.type !== "audio/wav") {
+                    musicAttention.textContent = "Please upload a music file in WAV format.";
+                    return;
+                }
+
+                if (imageFile.type.split("/")[0] !== "image") {
+                    imageAttention.textContent = "Please upload an image file.";
+                    return;
+                }
+
+                const img = new Image();
+                img.src = URL.createObjectURL(imageFile);
+                img.onload = function () {
+                    if (img.width !== 3000 || img.height !== 3000) {
+                        imageAttention.textContent = "Image should be 3000x3000 pixels.";
+                    } else {
+                        const today = new Date();
+                        const minDate = new Date(today);
+                        minDate.setDate(today.getDate() + 7);
+
+                        if (new Date(releaseDate) < minDate) {
+                            dateAttention.textContent = "Release date should be at least one week ahead from today.";
+                        } else if (!artistName || !rightsHolder) {
+                            artistAttention.textContent = "Please provide Artist's Name and Rights Holder.";
+                        } else {
+                            previewMusicAttention.textContent = "Music File: WAV format";
+                            previewImageAttention.textContent = "Image: 3000x3000 pixels";
+                            previewDateAttention.textContent = "Release Date: " + releaseDate;
+                            previewArtistAttention.textContent = "Artist's Name: " + artistName;
+                            previewRightsAttention.textContent = "Rights Holder: " + rightsHolder;
+                            previewImage.src = img.src;
+                            previewAudio.src = URL.createObjectURL(musicFile);
+                            previewSection.style.display = "block";
+                            document.getElementById("submit-button").style.display = "block";
+                            document.getElementById("music-upload").style.display = "none";
+                        }
+                    }
+                };
+            } else {
+                if (!musicFile) {
+                    musicAttention.textContent = "Please select a music file.";
+                }
+                if (!imageFile) {
+                    imageAttention.textContent = "Please select an image file.";
+                }
+            }
+        }
+
+        // Function to generate a random music ID
+        function generateRandomId() {
+            return Math.random().toString(36).substr(2, 9);
+        }
+
+        // Function to send email with details
+        function sendEmail() {
+            const artistName = document.getElementById("artist-name").value;
+            const rightsHolder = document.getElementById("rights-holder").value;
+            const musicFile = document.getElementById("music-file").files[0];
+            const imageFile = document.getElementById("image-file").files[0];
+            const releaseDate = document.getElementById("release-date").value;
+            const musicId = generateRandomId();
+
+            const emailContent = `
+Music ID: ${musicId}
+Artist's Name: ${artistName}
+Rights Holder: ${rightsHolder}
+Music File: ${musicFile.name}
+Image File: ${imageFile.name}
+Release Date: ${releaseDate}
+
+I apologize for the inconvenience. Due to server issues, you have to send the attachments separately
+One min there is no server from the first place .
+Anti-AI Movement follower.
+
+Best Regards:
+Neelkanth Patel (CEO & Founder)
+Gaming Network Studio`;
+
+           window.open(`mailto:neelkanthpatel487@gmail.com?subject=Music Submission&body=${encodeURIComponent(emailContent)}`);
+        }
+
+    </script>
+</body>
+</html>

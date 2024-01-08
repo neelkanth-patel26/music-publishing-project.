@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2f2f2f;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ff5722;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #383838;
+            border: 1px solid #1d2028;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #ff5722;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #ff5722;
+        }
+
+        input[type="file"],
+        input[type="text"],
+        input[type="date"] {
+            margin-bottom: 10px;
+            background: #4a4a4a;
+            border: none;
+            color: #fff;
+            padding: 8px;
+        }
+
+        input[type="text"]::after {
+            content: " ©";
+            color: #ff5722;
+            pointer-events: none;
+        }
+
+        button {
+            background-color: #ff5722;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #ff7043;
+        }
+
+        footer {
+            background: #2f2f2f;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .attention {
+            font-size: 14px;
+            color: #ff5722;
+            margin: 5px 0;
+        }
+
+        #preview {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #4a4a4a;
+            border-radius: 10px;
+        }
+
+        #preview h2 {
+            color: #ff5722;
+        }
+
+        #preview img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #artist-rights {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #4a4a4a;
+            border-radius: 10px;
+        }
+
+        #artist-rights h2 {
+            color: #ff5722;
+        }
+
+        /* CSS for the audio controls */
+        audio {
+            background: #4a4a4a;
+            width: 100%;
+            color: #ff5722;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .gap {
+            margin-top: 10px;
+        }
+    </style>
+    <title>Gaming Network Studio Music</title>
+</head>
+<body>
+    <header>
+        <h1>Gaming Network Studio Music</h1>
+    </header>
+    
+    <main>
+        <section id="music-upload">
+            <h2>Upload Your Music</h2>
+            <form action="javascript:void(0)" onsubmit="showPreview();">
+                <label for="artist-name">Artist's Name:</label>
+                <input type="text" id="artist-name" name="artistName" required>
+                <p class="attention" id="artist-attention"></p>
+
+                <label for="rights-holder">Rights Holder:</label>
+                <input type="text" id="rights-holder" name="rightsHolder" required>
+                <p class="attention" id="rights-attention"></p>
+
+                <label for="music-file">Select a Music File (WAV format for best quality):</label>
+                <input type="file" id="music-file" name="musicFile" accept=".wav" required>
+                <p class="attention" id="music-attention"></p>
+
+                <label for="image-file">Select an Image (3000x3000 pixels):</label>
+                <input type="file" id="image-file" name="imageFile" accept="image/*" required>
+                <p class="attention" id="image-attention"></p>
+
+                <label for="release-date">Release Date (One week ahead):</label>
+                <input type="date" id="release-date" name="releaseDate" required min="2023-11-01">
+                <p class="attention" id="date-attention"></p>
+
+                <button type="submit">Preview</button>
+            </form>
+        </section>
+
+        <!-- Preview Section -->
+        <section id="preview">
+            <h2>Preview:</h2>
+            <p class="attention" id="preview-music-attention"></p>
+            <p class="attention" id="preview-image-attention"></p>
+            <p class="attention" id="preview-date-attention"></p>
+            <p class="attention" id="preview-artist-attention"></p>
+            <p class="attention" id="preview-rights-attention"></p>
+            <img id="preview-image" alt="Image Preview">
+            <audio id="preview-audio" controls></audio>
+            <div class="center">
+                <button id="submit-button" onclick="sendEmail();" class="gap">Submit</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Gaming Network Studio</p>
+    </footer>
+
+    <script>
+        function showPreview() {
+            const musicFile = document.getElementById("music-file").files[0];
+            const imageFile = document.getElementById("image-file").files[0];
+            const releaseDate = document.getElementById("release-date").value;
+            const artistName = document.getElementById("artist-name").value;
+            const rightsHolder = document.getElementById("rights-holder").value;
+            const musicAttention = document.getElementById("music-attention");
+            const imageAttention = document.getElementById("image-attention");
+            const dateAttention = document.getElementById("date-attention");
+            const artistAttention = document.getElementById("artist-attention");
+            const rightsAttention = document.getElementById("rights-attention");
+            const previewMusicAttention = document.getElementById("preview-music-attention");
+            const previewImageAttention = document.getElementById("preview-image-attention");
+            const previewDateAttention = document.getElementById("preview-date-attention");
+            const previewArtistAttention = document.getElementById("preview-artist-attention");
+            const previewRightsAttention = document.getElementById("preview-rights-attention");
+            const previewSection = document.getElementById("preview");
+            const previewImage = document.getElementById("preview-image");
+            const previewAudio = document.getElementById("preview-audio");
+
+            musicAttention.textContent = "";
+            imageAttention.textContent = "";
+            dateAttention.textContent = "";
+            artistAttention.textContent = "";
+            rightsAttention.textContent = "";
+            previewMusicAttention.textContent = "";
+            previewImageAttention.textContent = "";
+            previewDateAttention.textContent = "";
+            previewArtistAttention.textContent = "";
+            previewRightsAttention.textContent = "";
+
+            if (musicFile && imageFile) {
+                if (musicFile.type !== "audio/wav") {
+                    musicAttention.textContent = "Please upload a music file in WAV format.";
+                    return;
+                }
+
+                if (imageFile.type.split("/")[0] !== "image") {
+                    imageAttention.textContent = "Please upload an image file.";
+                    return;
+                }
+
+                const img = new Image();
+                img.src = URL.createObjectURL(imageFile);
+                img.onload = function () {
+                    if (img.width !== 3000 || img.height !== 3000) {
+                        imageAttention.textContent = "Image should be 3000x3000 pixels.";
+                    } else {
+                        const today = new Date();
+                        const minDate = new Date(today);
+                        minDate.setDate(today.getDate() + 7);
+
+                        if (new Date(releaseDate) < minDate) {
+                            dateAttention.textContent = "Release date should be at least one week ahead from today.";
+                        } else if (!artistName || !rightsHolder) {
+                            artistAttention.textContent = "Please provide Artist's Name and Rights Holder.";
+                        } else {
+                            previewMusicAttention.textContent = "Music File: WAV format";
+                            previewImageAttention.textContent = "Image: 3000x3000 pixels";
+                            previewDateAttention.textContent = "Release Date: " + releaseDate;
+                            previewArtistAttention.textContent = "Artist's Name: " + artistName;
+                            previewRightsAttention.textContent = "Rights Holder: " + rightsHolder;
+                            previewImage.src = img.src;
+                            previewAudio.src = URL.createObjectURL(musicFile);
+                            previewSection.style.display = "block";
+                            document.getElementById("submit-button").style.display = "block";
+                            document.getElementById("music-upload").style.display = "none";
+                        }
+                    }
+                };
+            } else {
+                if (!musicFile) {
+                    musicAttention.textContent = "Please select a music file.";
+                }
+                if (!imageFile) {
+                    imageAttention.textContent = "Please select an image file.";
+                }
+            }
+        }
+
+        // Function to generate a random music ID
+        function generateRandomId() {
+            return Math.random().toString(36).substr(2, 9);
+        }
+
+        // Function to send email with details
+        function sendEmail() {
+            const artistName = document.getElementById("artist-name").value;
+            const rightsHolder = document.getElementById("rights-holder").value;
+            const musicFile = document.getElementById("music-file").files[0];
+            const imageFile = document.getElementById("image-file").files[0];
+            const releaseDate = document.getElementById("release-date").value;
+            const musicId = generateRandomId();
+
+            const emailContent = `
+Music ID: ${musicId}
+Artist's Name: ${artistName}
+Rights Holder: ${rightsHolder}
+Music File: ${musicFile.name}
+Image File: ${imageFile.name}
+Release Date: ${releaseDate}
+I apologize for the inconvenience. Due to server issues, you have to send the attachments separately
+
+
+Best Regards:
+Gaming Network Studio Media Group
+
+            `;
+
+            // You can replace the email address with the desired recipient's address
+            window.open(`mailto:reesewhiteman44@gmail.com?subject=Music Submission&body=${encodeURIComponent(emailContent)}`);
+        }
+    </script>
+</body>
+</html>

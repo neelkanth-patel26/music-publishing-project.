@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Submission</title>
+</head>
+<body>
+    <form id="music-form">
+        <label for="artist-name">Artist's Name:</label>
+        <input type="text" id="artist-name" name="artistName" required>
+        
+        <label for="rights-holder">Rights Holder:</label>
+        <input type="text" id="rights-holder" name="rightsHolder" required>
+        
+        <label for="release-date">Release Date:</label>
+        <input type="date" id="release-date" name="releaseDate" required min="2023-11-01">
+        
+        <label for="music-file">Select a Music File (WAV format for best quality):</label>
+        <input type="file" id="music-file" accept=".wav" required>
+        
+        <label for="image-file">Select an Image (3000x3000 pixels):</label>
+        <input type="file" id="image-file" accept="image/*" required>
+        
+        <button type="button" id="submit-button">Submit</button>
+    </form>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</body>
+</html>

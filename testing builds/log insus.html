@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #333;
+            color: #afa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #afa;;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+            background: #333;
+            padding: 20px;
+            border: 1px solid #afa;;
+            border-radius: 5px;
+            
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 93%;
+            padding: 10px;
+            background: rgb(199, 224, 199);;
+            color: rgb(10, 11, 10);;
+            margin: 5px 0;
+            border: 1px solid #afa;;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: #afa;;
+            color: rgb(10, 11, 10);;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: rgb(162, 181, 162); ;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        
+footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #afa;;
+            color: #0f0f0f;
+            text-align: center;
+            padding: 10px;
+        }
+        header {
+            background-color: #afa;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: black;
+        }
+
+        /* Add this CSS to remove the blue underline for links */
+        a {
+            text-decoration: none;
+        }
+       
+
+        .social-links {
+            display: flex;
+        }
+
+        .social-links a {
+            color: black;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #afa;
+            display: inline-block;
+        }
+        p1{
+            color: #afa;
+            text-align: center;
+            margin-top: 15px;
+        }
+        input[type="email"] {
+    width: 93%;
+    padding: 10px;
+    background: rgb(199, 224, 199);
+    color: rgb(10, 11, 10);
+    margin: 5px 0;
+    border: 1px solid #afa;
+    border-radius: 3px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://gnstudioxrage.wixsite.com/gamingnetworkstudio" target="_blank" rel="noopener">
+            <h1>Gaming Network Studio Music</h1>
+        </a>
+        <div class="social-links">
+	        <a href="https://www.youtube.com/channel/UC6_eACrlF9Mp7wIHLe3gkMA" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://www.linkedin.com/in/gaming-network-studio-823234289/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/neelkanth_patel_26/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://discord.com/invite/PAMxeg3ega" target="_blank" rel="noopener">Discord</a>
+            <a href="https://soundcloud.com/gamingnetworkstudio" target="_blank" rel="noopener">SoundCloud</a>
+            
+        </div>
+    </header>
+    <h2>Login</h2>
+    <form action="login_thank_you.html" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="Your email"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+    <p>Forgot your password? <a href="forgot_password.html">Reset it</a></p>
+
+    <footer>
+        <p>&copy; 2023 Gaming Network Studio. All rights reserved.</p>
+    </footer>
+</body>
+</html>
